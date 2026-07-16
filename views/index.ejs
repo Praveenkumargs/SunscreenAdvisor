@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunscreen Advisor</title>
+    <link rel="icon" type="image/png" href="/images/sun.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Let's find if we want to apply Sunscreen ☀️</h1>
+        <form action="/" id="form" class="form" method="POST">
+            <label for="lat">Latitude:</label>
+            <input type="text" id="lat" name="latitude">
+            <label for="long">Longitude:</label>
+            <input type="text" id="long" name="longitude">
+            <button class="checkButton">Check</button>
+        </form>
+        <div class="result-box">
+            <h2>Result</h2>
+            <p id="result">
+                <%= locals.content || "Your sunscreen recommendation will appear here." %>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
