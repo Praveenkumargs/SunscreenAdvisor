@@ -1,18 +1,22 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import ejs from "ejs";
+
+
 
 const app = express();
 const port = process.env.PORT ||3000;
 
+app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req,res) => {
     try {
-        res.render('index.ejs',);
+        res.render('index',);
     } catch (error) {
-        res.render('index.ejs', {
+        res.render('index', {
             content : error.message,
         });
     }
@@ -27,12 +31,16 @@ app.post('/', async (req,res) => {
         } else {
             var text = 'UV Index is Low. You can safely stay outdoors without sunscreen. 😊';
         }
-        res.render('index.ejs', { content: text,});
+        res.render('index', { content: text,});
     } catch (error) {
-        res.render('index.ejs', { content: error.message});        
+        res.render('index', { content: error.message});        
     }
 });
 
-app.listen(port, () =>{
-    console.log(`Server is running in port ${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+
+export default app;
